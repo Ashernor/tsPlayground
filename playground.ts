@@ -1,4 +1,4 @@
-import JsonParser from "./jsonparser";
+import JsonParser from './jsonparser';
 
-const myParser = new JsonParser('example.json', 'files/');
-myParser.toCsv('toto');rm 
+const parser = new JsonParser('example.json', './files');
+parser.toCsv('toto');

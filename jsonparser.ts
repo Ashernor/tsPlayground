@@ -6,11 +6,13 @@ export class JsonParser {
   fileName: string;
   optPath: string;
   resultArray: Array<>;
+  
   constructor(fileName: string, optPath: string) {
     this.fileName = fileName.split('.').length > 0 ? fileName.split('.')[0] : fileName;
 
     const absolutePath = `${optPath}/${fileName}`;
     const data = JSON.parse(fs.readFileSync(absolutePath, 'utf-8'))
+
     const ruleMap = new Map<string, string>();
 
     for (const rule in data) {
@@ -28,10 +30,9 @@ export class JsonParser {
   toCsv(outputName?:string) {
     outputName = typeof outputName === 'undefined' ? this.fileName : outputName;
     console.log('Writing to file :', outputName)
-
     try {
       const csv = parse(this.resultArray);
-      fs.writeFileSync(`files/${this.fileName}.csv`,  csv, () => {
+      fs.writeFileSync(`files/${outputName}.csv`,  csv, () => {
       });
     } catch (err) {
       console.error(err);
