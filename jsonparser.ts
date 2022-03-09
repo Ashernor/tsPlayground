@@ -5,7 +5,8 @@ import * as fs from 'fs';
 export class JsonParser {
   fileName: string;
   optPath: string;
-  resultArray: Array<>;
+  resultArray: Array<string>;
+  toto: Array<string>;
   
   constructor(fileName: string, optPath: string) {
     this.fileName = fileName.split('.').length > 0 ? fileName.split('.')[0] : fileName;
@@ -21,6 +22,8 @@ export class JsonParser {
       for (const val in and) {
         valuesArray.push(and[val].name);
       }
+
+      this.toto = valuesArray;
       
       ruleMap.set(data[rule].name, valuesArray.toString()) 
     }
