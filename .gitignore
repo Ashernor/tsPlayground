@@ -1,4 +1,5 @@
 .DS_Store
+files
 files/
 *.csv
 *.json
