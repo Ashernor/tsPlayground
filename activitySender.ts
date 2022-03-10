@@ -27,7 +27,7 @@ export class activitySender {
     const header: Array<string> = rowIncludingHeader[0].trim().split(this.delimiter);
 
     const rows: Array<Array<string>> = rowIncludingHeader.slice(1).map(rawRow => {
-      return rawRow.split(this.delimiter);
+      return rawRow.trim().split(this.delimiter);
     });
 
     const formattedIdentities: Array<IdentityType> = rows.map(rowValue => {
