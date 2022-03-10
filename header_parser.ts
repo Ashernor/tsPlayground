@@ -31,6 +31,7 @@ export class CSVParser {
         }
       })
     })
+    console.log(this.csvAttributes)
     const jsonSchema = JSON.stringify(schema, null, '\t');
     fs.writeFileSync(this.outputFileName, jsonSchema);
   }

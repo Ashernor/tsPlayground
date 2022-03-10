@@ -1,4 +1,4 @@
 import { CSVParser } from './header_parser';
 
-const parser = new CSVParser('./files/sample.csv', './files/schemaFile.json', ';');
+const parser = new CSVParser('./files/attributs-galec.csv', './files/schemaFile.json', ',');
 parser.getXOSchema();

@@ -10,6 +10,7 @@ export class activitySender {
   payload: object;
   delimiter: string;
   identities: IdentityType[];
+  sent: Number;
 
   constructor(file: string, action, trackerKey: string, delimiter) {
     this.trackerKey = trackerKey;
@@ -17,6 +18,7 @@ export class activitySender {
     this.request = `https://collect-eu.attraqt.io/${trackerKey}`;
     this.delimiter = delimiter;
     this.identities = this.#formatCSV(file);
+    this.sent = 0;
   }
   
   #formatCSV(file: string):IdentityType[] {
@@ -36,6 +38,7 @@ export class activitySender {
   }
 
   sendActivities() {
+
     this.identities.forEach(identity => {
       const payload = {
         "action": this.action,
@@ -50,10 +53,13 @@ export class activitySender {
         }
       }
 
+      this.sent = this.sent+1;
+      console.log(this.sent );
+
       return axios.post(this.request, payload)
         .then(function (response) {
-          console.log({ status: Number(response.status) });
-          return { status: Number(response.status) };
+          //console.log({ status: Number(response.status) });
+          //return { status: Number(response.status) };
         })
         .catch(function (error) {
           console.log({ status: Number(error.response)});
