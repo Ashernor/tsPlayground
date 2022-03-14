@@ -37,9 +37,9 @@ export class activitySender {
     return formattedIdentities;
   }
 
-  sendActivities() {
-
-    this.identities.forEach(identity => {
+  async sendActivities() {
+    for (let i = 0; i < this.identities.length; i++) {
+    let identity = this.identities[i];
       const payload = {
         "action": this.action,
         "target": {},
@@ -53,16 +53,17 @@ export class activitySender {
         }
       }
 
-      return axios.post(this.request, payload)
+      await axios.post(this.request, payload)
         .then(function (response) {
-          console.log({ status: Number(response.status) });
+          console.log({ i,status: response.status });
           return { status: Number(response.status) };
         })
         .catch(function (error) {
-          console.log({ status: Number(error.response)});
+          console.log( error, payload )
+          console.log({ i, status: error.response });
           return { status: Number(error.response)};
       });
-    })
+    }
   }
   
 }
