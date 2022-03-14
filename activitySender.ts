@@ -53,13 +53,10 @@ export class activitySender {
         }
       }
 
-      this.sent = this.sent+1;
-      console.log(this.sent );
-
       return axios.post(this.request, payload)
         .then(function (response) {
-          //console.log({ status: Number(response.status) });
-          //return { status: Number(response.status) };
+          console.log({ status: Number(response.status) });
+          return { status: Number(response.status) };
         })
         .catch(function (error) {
           console.log({ status: Number(error.response)});
